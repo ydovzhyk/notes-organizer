@@ -1,0 +1,23 @@
+@import '../../../styles/common';
+
+.container {
+  margin: 0 auto;
+  padding-right: 10px;
+  padding-left: 10px;
+
+  @include mq(mobile) {
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 480px;
+  }
+
+  @include mq(tablet) {
+    width: 768px;
+  }
+
+  @include mq(desktop) {
+    padding-right: 16px;
+    padding-left: 16px;
+    width: 1280px;
+  }
+}

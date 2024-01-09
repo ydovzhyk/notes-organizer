@@ -1,0 +1,77 @@
+@use '../../../styles/mixins';
+
+.btnLight {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 157px;
+  height: 40px;
+  background-color: var(--background-btn-main-color);
+  border: 1px solid var(--btn-border-color);
+  color: var(--btn-text-color);
+  border-radius: 10.3108px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  transition: background-color var(--transition-duration) var(--timing-function),
+    color var(--transition-duration) var(--timing-function),
+    border-color var(--transition-duration) var(--timing-function),
+    box-shadow var(--transition-duration) var(--timing-function);
+  &:hover {
+    background-color: var(--background-btn-second-color);
+    border-color: var(--btn-border-color);
+    box-shadow: var(--hover-box-shadow);
+    color: var(--hover-btn-text);
+  }
+  @include mixins.mq(tablet) {
+    width: 157px;
+    height: 40px;
+    font-size: 15px;
+  }
+  @include mixins.mq(desktop) {
+    width: 196px;
+    height: 50px;
+    font-size: 16px;
+  }
+}
+
+.btnDark {
+  width: 196px;
+  height: 50px;
+  background-color: var(--background-btn-second-color);
+  // box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border: solid 1px var(--btn-border-color);
+  color: var(--second-text-color);
+  border-radius: 10.3108px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  transition: box-shadow var(--transition-duration) var(--timing-function),
+    background-color var(--transition-duration) var(--timing-function),
+    color var(--transition-duration) var(--timing-function);
+  &:hover {
+    background-color: #f5f5f5;
+    box-shadow: var(--hover-box-shadow);
+    color: var(--btn-text-color);
+  }
+}
+
+.exitHeaderBtn {
+  background-color: transparent;
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 14px;
+  @include mixins.mq(tablet) {
+    font-size: 15px;
+  }
+  @include mixins.mq(desktop) {
+    font-size: 16px;
+  }
+}
+
+.exitHeaderBtn:hover,
+.exitHeaderBtn:focus {
+  text-shadow: var(--hover-text-shadow);
+  color: var(--hover-active-color);
+}

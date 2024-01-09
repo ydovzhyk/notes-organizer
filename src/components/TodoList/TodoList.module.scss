@@ -1,0 +1,32 @@
+@use '../../styles/mixins';
+
+.todoList {
+  margin-top: 64px;
+  padding-bottom: 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(../../images/Auth/bg-register.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  @include mixins.mq(tablet) {
+    background-repeat: no-repeat;
+  }
+}
+
+.todosGroup {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+  justify-items: center;
+  @include mixins.mq(tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 45px;
+  }
+  @include mixins.mq(desktop) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 95px;
+  }
+}

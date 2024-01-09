@@ -1,0 +1,174 @@
+@use '../../styles/mixins';
+
+.todoPreview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 344px;
+  height: 100%;
+}
+
+.todoCard {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(../../images/Auth/bg-register.jpg);
+  border-radius: 30px;
+  border: 2px solid var(--bg-footer-header);
+  cursor: pointer;
+}
+
+.cardBorder {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 20px;
+  padding-top: 5px;
+  border-radius: 30px;
+  border: 2px solid var(--bg-footer-header);
+}
+
+.partData {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  width: 290px;
+  min-height: 28px;
+  background-color: var(--bg-footer-header);
+}
+
+.partGroup {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 290px;
+}
+
+.partDataAddInfoUser {
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  min-height: 48px;
+  background-color: var(--bg-footer-header);
+}
+
+.partDataDate {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100px;
+  height: 28px;
+  background-color: var(--bg-footer-header);
+}
+
+.cardGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.todoStatus {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.todoWindow {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1200;
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+.todoPart {
+  position: relative;
+  width: 370px;
+  @include mixins.mq(tablet) {
+    width: 487px;
+  }
+  @include mixins.mq(desktop) {
+    width: 657px;
+  }
+}
+
+.dismissButton {
+  position: absolute;
+  background-color: transparent;
+  border-color: transparent;
+  top: 111px;
+  left: 35px;
+  @include mixins.mq(tablet) {
+    left: 35px;
+    top: 52px;
+  }
+  @include mixins.mq(desktop) {
+    top: 60px;
+  }
+}
+
+.arrowButton {
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  background-color: rgba(245, 245, 245, 0.5);
+  border-radius: 50%;
+  color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--accent-color);
+  }
+  &:hover svg {
+    color: var(--icon-color);
+  }
+  cursor: pointer;
+  @include mixins.mq(tablet) {
+    margin-left: 20px;
+    width: 45px;
+    height: 45px;
+  }
+  @include mixins.mq(desktop) {
+    margin-left: 25px;
+  }
+}
+
+.editTodo {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 5px;
+  padding-right: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(../../images/Auth/bg-register.jpg);
+  border-radius: 30px;
+  border: 2px solid var(--bg-footer-header);
+  @include mixins.mq(tablet) {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+}
+
+.editTodoGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 2x;
+}

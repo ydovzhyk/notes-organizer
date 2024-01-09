@@ -1,0 +1,65 @@
+@use '../../styles/mixins';
+
+.userInfoSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.userWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 45px;
+}
+
+.userBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  @include mixins.mq(tablet) {
+    width: 35px;
+    height: 35px;
+  }
+  @include mixins.mq(desktop) {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.userPhoto {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #212121;
+  @include mixins.mq(tablet) {
+    width: 35px;
+    height: 35px;
+  }
+  @include mixins.mq(desktop) {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.userName {
+  font-size: 14px;
+  @include mixins.mq(tablet) {
+    font-size: 15px;
+  }
+  @include mixins.mq(desktop) {
+    font-size: 16px;
+  }
+}
