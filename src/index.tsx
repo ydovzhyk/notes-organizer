@@ -24,6 +24,6 @@ root.render(
   </BrowserRouter>
 );
 
-//потрібно додати react-router-dom, redux, і redux-persist до вашого React TypeScript додатку та налаштувати їх, а також включити роутер та редукс у вашому вихідному файлі index.tsx.
+//потрібно додати react-router-dom, redux, і redux-persist до додатку та налаштувати їх, а також включити роутер та редукс у вашому вихідному файлі index.tsx.
 //Встановіть необхідні залежності:
 //npm install react-router-dom redux react-redux redux-persist
