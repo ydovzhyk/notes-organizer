@@ -2,7 +2,6 @@
   "name": "notes-organizer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ydovzhyk.github.io/notes-organizer/",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
