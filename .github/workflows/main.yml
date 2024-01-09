@@ -28,9 +28,6 @@ jobs:
       - name: Build the application
         run: npm run build
 
-      # - name: Copy images folder to build folder
-      #   run: cp -R public/images build/
-
       - name: Build Docker image
         run: docker build -t yuriydovzhyk/notes-organizer:latest .
 
@@ -62,33 +59,8 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/notes-organizer:latest
 
       - name: Deploy to GitHub Pages
-        # uses: JamesIves/github-pages-deploy-action@4.1.2
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: ./build
           token: ${{ secrets.ACCESS_TOKEN }}
-# name: Build and deploy to GitHub Pages
-
-# on:
-#   push:
-#     branches: [main]
-
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout 🛎️
-#         uses: actions/checkout@v2.3.1
-
-#       - name: Install, lint, build 🔧
-#         run: |
-#           npm install
-#           npm run lint:js
-#           npm run build
-
-#       - name: Deploy 🚀
-#         uses: JamesIves/github-pages-deploy-action@v4
-#         with:
-#           branch: gh-pages
-#           folder: build

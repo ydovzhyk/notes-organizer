@@ -120,7 +120,7 @@ const TodoList: React.FC = () => {
                     }
                 } else {
                     arrayWeek = fetchDataFromLocalStorage();
-                    if (arrayWeek.length > 0) {
+                    if (arrayWeek && arrayWeek.length > 0) {
                         dispatch(saveWeekPage(numberWeekPage ? numberWeekPage : 1));
                         setCurrentGroupWeekIndex(numberWeekPage ? numberWeekPage - 1 : 0);
                     } else {
