@@ -14,8 +14,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const basename = process.env.NODE_ENV === 'production' ? '/notes-organizer/' : '/';
+
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={basename}>
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
         <App />
