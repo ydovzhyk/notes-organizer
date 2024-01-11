@@ -12,7 +12,7 @@ import {
 } from '../components/types/auth/axios-auth';
 
 // const REACT_APP_API_URL = 'http://localhost:4000';
-const REACT_APP_API_URL = 'https://ts-template-backend.herokuapp.com/';
+const REACT_APP_API_URL = 'https://notes-organizer-backend.herokuapp.com/';
 
 export const instance = axios.create({
   baseURL: REACT_APP_API_URL,

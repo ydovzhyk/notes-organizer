@@ -29,7 +29,7 @@ const Login: React.FC = () => {
 
   const versionApp = () => {
     if (process.env.NODE_ENV === 'production') {
-      return 'https://ts-template-backend.herokuapp.com';
+      return 'https://notes-organizer-backend.herokuapp.com';
     }
     if (process.env.NODE_ENV === 'development') {
       return 'http://localhost:4000';
