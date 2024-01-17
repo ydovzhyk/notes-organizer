@@ -18,7 +18,7 @@ const UserRoutes: React.FC = () => {
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/notes-organizer" element={<HomePage />} />
+          {/* <Route path="/notes-organizer" element={<HomePage />} /> */}
           <Route path="/list" element={<TodoListPage />} />
           <Route path="/edit" element={<EditPage />} />
           <Route path="/auth/*" element={<AuthPage />}>
