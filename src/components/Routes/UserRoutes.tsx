@@ -16,8 +16,7 @@ const UserRoutes: React.FC = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/" element={<PublicRoute />} >
-        {/* <Route element={<PublicRoute />}> */}
+        <Route element={<PublicRoute />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/notes-organizer" element={<HomePage />} />
           <Route path="/list" element={<TodoListPage />} />
