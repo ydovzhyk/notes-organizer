@@ -29,3 +29,27 @@ root.render(
 //потрібно додати react-router-dom, redux, і redux-persist до додатку та налаштувати їх, а також включити роутер та редукс у вашому вихідному файлі index.tsx.
 //Встановіть необхідні залежності:
 //npm install react-router-dom redux react-redux redux-persist
+
+// if (process.env.NODE_ENV === 'production') {
+//   ReactDOM.createRoot(document.getElementById('root')).render(
+//     <BrowserRouter basename="/notes-organizer">
+//       <Provider store={store}>
+//         <PersistGate loading={<Loader />} persistor={persistor}>
+//           <App />
+//         </PersistGate>
+//       </Provider>
+//     </BrowserRouter>
+//   );
+// }
+
+// if (process.env.NODE_ENV === 'development') {
+//   ReactDOM.createRoot(document.getElementById('root')).render(
+//     <BrowserRouter>
+//       <Provider store={store}>
+//         <PersistGate loading={<Loader />} persistor={persistor}>
+//           <App />
+//         </PersistGate>
+//       </Provider>
+//     </BrowserRouter>
+//   );
+// }
