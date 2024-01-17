@@ -180,7 +180,6 @@ const TodoList: React.FC = () => {
     //We change the URL when changing week or search pages
     useEffect(() => {
         const paramsURL = parseURL();
-        console.log('Це paramsURL', paramsURL)
         const newUrl = buildURL(paramsURL.urlData, searchPage, weekPage);
         console.log('Url який сформувався і ми переходимо на нього', newUrl)
         navigate(newUrl);
