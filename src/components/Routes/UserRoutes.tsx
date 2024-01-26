@@ -18,13 +18,13 @@ const UserRoutes: React.FC = () => {
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="/list" element={<TodoListPage />} />
           <Route path="/edit/:id" element={<EditPage />} />
           <Route path="/auth/*" element={<AuthPage />}>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Route>
-          {/* <Route path="/create-task" element={<CreateTaskPage />} /> */}
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
