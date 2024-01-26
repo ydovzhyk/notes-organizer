@@ -24,6 +24,9 @@
 }
 
 .cardBorder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 3px;
   margin-bottom: 3px;
   margin-left: 3px;
@@ -61,11 +64,11 @@
   padding-right: 10px;
   background-color: var(--bg-footer-header);
   @include mixins.mq(tablet) {
-    width: 360px;
+    width: 365px;
     min-height: 38px;
   }
   @include mixins.mq(desktop) {
-    width: 535px;
+    width: 520px;
     min-height: 48px;
   }
 }
