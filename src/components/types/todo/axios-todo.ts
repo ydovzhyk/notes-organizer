@@ -1,4 +1,4 @@
-import { ITodoCreate, ITodoServer } from "./todo";
+import { ITodoServer } from "./todo";
 
 export interface ICreateTodoResponse {
     message: string,
@@ -14,4 +14,8 @@ export interface ITodosSearchResponse {
 
 export interface ITodosSynchronizeResponse {
     message: string,
+}
+
+export interface ITodoIdResponse {
+    todo: ITodoServer,
 }

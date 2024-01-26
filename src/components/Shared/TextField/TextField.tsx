@@ -48,6 +48,10 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>((props, ref) => 
   useEffect(() => { 
     if (props.value === '') {
       setInputValue('');
+    } else {
+      if (props.value) {
+        setInputValue(props.value);
+      }
     }
   }, [props.value]);
 

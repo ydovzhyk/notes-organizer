@@ -6,9 +6,10 @@ import {
   axiosTodosWeek,
   axiosSearchTodo,
   axiosSynchronizeTodo,
+  axiosGetEditTodo,
 } from '../../api/todo';
 
-import { ICreateTodoResponse, ITodosWeekResponse, ITodosSearchResponse, ITodosSynchronizeResponse } from '../../components/types/todo/axios-todo';
+import { ICreateTodoResponse, ITodosWeekResponse, ITodosSearchResponse, ITodosSynchronizeResponse, ITodoIdResponse } from '../../components/types/todo/axios-todo';
 import { ITodoCreate, ITodoSearch } from '../../components/types/todo/todo';
 
 import { statusStopResetMessage } from './todo-slice';
@@ -75,6 +76,20 @@ export const synchronizeTodo = createAsyncThunk(
     try {
       const data: ITodosSynchronizeResponse = await axiosSynchronizeTodo(userData);
       dispatch(statusStopResetMessage(false));
+        return data;
+    } catch (error: any) {
+        const { data, status } = error.response || {};
+        const customError = { data, status };
+        return rejectWithValue(customError);
+    }
+  }
+);
+
+export const getEditTodo = createAsyncThunk(
+  'todo/:id',
+  async (userData: string, { rejectWithValue }) => {
+    try {
+      const data: ITodoIdResponse = await axiosGetEditTodo(userData);
         return data;
     } catch (error: any) {
         const { data, status } = error.response || {};

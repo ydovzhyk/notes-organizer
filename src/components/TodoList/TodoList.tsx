@@ -49,14 +49,16 @@ const TodoList: React.FC = () => {
     const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
 
     let itemsPerPage = isTablet ? 2 : 3;
-    const totalPagesSearch = arrayTodosSearch.length > 0 ? Math.ceil(arrayTodosSearch.length / itemsPerPage) : 0;
-    const totalPagesWeek = arrayTodosWeek.length > 0 ? Math.ceil(arrayTodosWeek.length / itemsPerPage) : 0;
+    const totalPagesSearch = arrayTodosSearch && arrayTodosSearch.length > 0 ? Math.ceil(arrayTodosSearch.length / itemsPerPage) : 0;
+    const totalPagesWeek = arrayTodosWeek && arrayTodosWeek.length > 0 ? Math.ceil(arrayTodosWeek.length / itemsPerPage) : 0;
+
     const [currentGroupSearchIndex, setCurrentGroupSearchIndex] = useState(0);
     const [currentGroupWeekIndex, setCurrentGroupWeekIndex] = useState(0);
-    const chunkedTodosSearch = chunkArray(arrayTodosSearch, itemsPerPage);
-    const chunkedTodosWeek = chunkArray(arrayTodosWeek, itemsPerPage);
-    const currentGroupSearch = chunkedTodosSearch[currentGroupSearchIndex];
-    const currentGroupWeek = chunkedTodosWeek[currentGroupWeekIndex];
+
+    const chunkedTodosSearch = chunkArray(arrayTodosSearch || [], itemsPerPage);
+    const chunkedTodosWeek = chunkArray(arrayTodosWeek || [], itemsPerPage);
+    const currentGroupSearch = chunkedTodosSearch[currentGroupSearchIndex] || [];
+    const currentGroupWeek = chunkedTodosWeek[currentGroupWeekIndex] || [];
 
     useEffect(() => {
         setDynamicStyles({
@@ -151,7 +153,7 @@ const TodoList: React.FC = () => {
                     }
                 } else {
                     arrayWeek = fetchDataFromLocalStorage();
-                    if (arrayWeek.length > 0) {
+                    if (arrayWeek && arrayWeek.length > 0) {
                         dispatch(saveWeekPage(numberWeekPage ? numberWeekPage : 1));
                         setCurrentGroupWeekIndex(numberWeekPage ? numberWeekPage - 1 : 0);
                     } else {
@@ -199,7 +201,7 @@ const TodoList: React.FC = () => {
         <section className={s.todoList} style={dynamicStyles}>
             <Container>
                 <div>
-                    {arrayTodosWeek.length > 0 &&
+                    {arrayTodosWeek && arrayTodosWeek.length > 0 &&
                         <div>
                             <Text
                                 text={`Завдання, які потрібно завершити в наступні 7 днів (${arrayTodosWeek.length} шт)`}
@@ -220,7 +222,7 @@ const TodoList: React.FC = () => {
                                 />)}        
                             </div>
                         </div>}
-                    {arrayTodosWeek.length === 0 &&
+                    {arrayTodosWeek && arrayTodosWeek.length === 0 &&
                         <div>
                             <Text
                                 text={'У вас не має завдань, які потрібно завершити в наступні 7 днів'}
@@ -235,7 +237,7 @@ const TodoList: React.FC = () => {
                         <SearchTodo />
                     </div>
                 <div>
-                {arrayTodosSearch.length > 0 && (
+                {arrayTodosSearch && arrayTodosSearch.length > 0 && (
                     <>
                         { currentGroupSearch && <ul className={s.todosGroup}>
                             {currentGroupSearch.map((todo: ITodoServer) => (

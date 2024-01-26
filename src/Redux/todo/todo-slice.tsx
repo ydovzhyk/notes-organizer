@@ -6,6 +6,7 @@ import {
     getTodosWeek,
     getSearchTodo,
     synchronizeTodo,
+    getEditTodo,
 } from './todo-operations';
 
 import { ITodoState } from '../../components/types/todo/store-todo';
@@ -18,6 +19,7 @@ const initialState: ITodoState = {
   arrayTodosWeek: [],
   arrayTodosSearch: [],
   stopResetMessage: false,
+  editTodo: {},
 };
 
 const todo = createSlice({
@@ -39,6 +41,9 @@ const todo = createSlice({
         statusStopResetMessage: (store, action) => {
             store.stopResetMessage = action.payload;
         },
+        saveEditTodo: (store, action) => {
+            store.editTodo = action.payload;
+        },
         clearTodoStore: store => {
             store.loading = false;
             store.error = '';
@@ -46,6 +51,7 @@ const todo = createSlice({
             store.todoList = [];
             store.arrayTodosWeek = [];
             store.arrayTodosSearch = [];
+            store.editTodo = {};
         },
         saveArrayTodosWeek: (store, action) => {
             store.arrayTodosWeek = action.payload;
@@ -127,6 +133,19 @@ const todo = createSlice({
             store.loading = false;
             store.error = action.payload.data?.message || 'Oops, something went wrong, try again';
         });
+        //get edit todo
+        builder.addCase(getEditTodo.pending, (store) => {
+            store.loading = true;
+            store.error = '';
+        });
+        builder.addCase(getEditTodo.fulfilled, (store, action) => {
+            store.loading = false;
+            store.editTodo = action.payload;
+        });
+        builder.addCase(getEditTodo.rejected, (store, action: any) => {
+            store.loading = false;
+            store.error = action.payload.data?.message || 'Oops, something went wrong, try again';
+        });
     }
 });
 
@@ -142,4 +161,5 @@ export const {
   clearArrayTodosSearch,
   clearArrayTodosWeek,
   statusStopResetMessage,
+  saveEditTodo,
 } = todo.actions;

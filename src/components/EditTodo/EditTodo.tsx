@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import moment, { Moment } from 'moment';
 import { useAppDispatch } from '../../hooks/hooks';
 import { useMediaQuery } from 'react-responsive';
 import { editTodo } from '../../Redux/todo/todo-operations';
 import { getLogin } from '../../Redux/auth/auth-selectors';
+import { getEditTodo } from '../../Redux/todo/todo-operations';
+import { getEditTodoStore } from '../../Redux/todo/todo-selectors';
 import { getTodoMessage } from '../../Redux/todo/todo-selectors'
-import { clearTodoMessage, createMessageConfirmation } from '../../Redux/todo/todo-slice';
+import { clearTodoMessage, createMessageConfirmation, saveEditTodo } from '../../Redux/todo/todo-slice';
 import { getEmailList } from '../../Redux/technical/technical-selectors';
 import { getOptionMenu } from '../../Redux/technical/technical-selectors';
 import Container from '../Shared/Container';
@@ -22,7 +25,6 @@ import Todo from '../Todo/Todo';
 import Message from '../Shared/Message';
 import { fields } from '../Shared/TextField/fields'
 import { ITodoCreate } from '../types/todo/todo';
-import { ITodoProps } from '../Todo/Todo'
 import { FaPlus } from 'react-icons/fa';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,44 +38,99 @@ interface EditTodoProps {
 
 const EditTodo: React.FC<EditTodoProps> = ({ todoData }) => {
 
+    const { id } = useParams();
+    const format = "DD.MM.YYYY";
+    const currentDate = moment().format('DD.MM.YYYY');
+
     const vpHeight = window.innerHeight;
     const [dynamicStyles, setDynamicStyles] = useState({});
     const [isShowPreviewInMobile, setIsShowPreviewInMobile] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 767 });
 
-    const selectedUsersInitial = todoData?.otherMembers ? [todoData.otherMembers] : [];
-    const additionalInfoInitial = todoData?.additionalInfo ? todoData.additionalInfo : '';
-    const dateFromInitial = todoData?.dateFrom ? todoData.dateFrom : '';
-    const dateToInitial = todoData?.dateTo ? todoData.dateTo : '';
-    const otherMembersInitial = todoData?.otherMembers ? todoData.otherMembers : '';
-    const partInitial = todoData?.part ? todoData.part : '';
-    const subjectInitial = todoData?.subject ? todoData.subject : '';
-    const saveAfterDeadlineInitial = todoData?.saveAfterDeadline ? todoData.saveAfterDeadline : false;
-    const _idInitial = todoData?._id ? todoData._id : '';
+    const [partInitial, setPartInitial] = useState<string>('');
+    const [_idInitial, set_idInitial] = useState<string>('');
+
+    const initialState = {
+        additionalInfo: '',
+        dateFrom: currentDate,
+        dateTo: currentDate,
+        otherMembers: '',
+        part: '',
+        subject: '',
+        saveAfterDeadline: false,
+    }
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const isUserLogin = useSelector(getLogin);
+    const editTodoStore = useSelector(getEditTodoStore);
     const arrayUser = useSelector(getEmailList);
     const options = useSelector(getOptionMenu);
     const message = useSelector(getTodoMessage);
     const [showUsersList, setShowUsersList] = useState<boolean>(false);
-    const [selectedUsers, setSelectedUsers] = useState<string[]>(selectedUsersInitial);
-    const format = "DD.MM.YYYY";
-    const [selectedDateFrom, setSelectedDateFrom] = useState<Moment>(moment(dateFromInitial, format));
-    const [selectedDateTo, setSelectedDateTo] = useState<Moment>(moment(dateToInitial, format));
+    const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+    
+    const [selectedDateFrom, setSelectedDateFrom] = useState<Moment>(moment(currentDate, format));
+    const [selectedDateTo, setSelectedDateTo] = useState<Moment>(moment(currentDate, format));
+    
+    const [previewData, setPreviewData] = useState(initialState);
 
+    const { control, handleSubmit, reset } = useForm<ITodoCreate>({
+        defaultValues: {
+            additionalInfo: previewData.additionalInfo,
+            dateFrom: previewData.dateFrom,
+            dateTo: previewData.dateTo,
+            otherMembers: previewData.otherMembers,
+            part: { value: previewData.part, label: previewData.part },
+            subject: previewData.subject,
+            saveAfterDeadline: previewData.saveAfterDeadline,
+        },
+    });
 
-    const initialState = {
-        additionalInfo: additionalInfoInitial,
-        dateFrom: dateFromInitial,
-        dateTo: dateToInitial,
-        otherMembers: otherMembersInitial,
-        part: partInitial,
-        subject: subjectInitial,
-        saveAfterDeadline: saveAfterDeadlineInitial,
-    }
-    const [previewData, setPreviewData] = useState<ITodoProps>(initialState);
+    useEffect(() => {
+        const updatePreviewData = async (data: any) => {
+            await setPreviewData({
+                ...data,
+            });
+        }
+        if (todoData && Object.keys(todoData).length > 0) {
+            updatePreviewData(todoData);
+            reset({
+                additionalInfo: todoData.additionalInfo,
+                dateFrom: todoData.dateFrom,
+                dateTo: todoData.dateTo,
+                otherMembers: todoData.otherMembers,
+                part: { value: todoData.part, label: todoData.part },
+                subject: todoData.subject,
+                saveAfterDeadline: todoData.saveAfterDeadline,
+            });
+            setSelectedDateFrom(moment(todoData.dateFrom, format));
+            setSelectedDateTo(moment(todoData.dateTo, format));
+            setSelectedUsers([todoData.otherMembers]);
+            setPartInitial(todoData.part);
+            set_idInitial(todoData._id);
+        }
+        if (!todoData && editTodoStore && Object.keys(editTodoStore).length > 0) {
+            updatePreviewData(editTodoStore);
+            if ('_id' in editTodoStore) {
+                reset({
+                    additionalInfo: editTodoStore.additionalInfo,
+                    dateFrom: editTodoStore.dateFrom,
+                    dateTo: editTodoStore.dateTo,
+                    otherMembers: editTodoStore.otherMembers,
+                    part: { value: editTodoStore.part, label: editTodoStore.part },
+                    subject: editTodoStore.subject,
+                    saveAfterDeadline: editTodoStore.saveAfterDeadline,
+                });
+                setSelectedDateFrom(moment(editTodoStore.dateFrom, format));
+                setSelectedDateTo(moment(editTodoStore.dateTo, format));
+                setSelectedUsers([editTodoStore.otherMembers]);
+                set_idInitial(editTodoStore._id);
+                setPartInitial(editTodoStore.part);
+            }
+        }
+
+    }, [editTodoStore, todoData, reset]);
 
     useEffect(() => {
         setDynamicStyles({
@@ -82,10 +139,26 @@ const EditTodo: React.FC<EditTodoProps> = ({ todoData }) => {
     }, [isUserLogin, vpHeight]);
 
     useEffect(() => {
+        const fetchTodoFromLocalStorage = () => {
+            const localStorageData = localStorage.getItem('notes-organizer_tasks');
+            if (localStorageData) {
+                const tasksFromLocalStorage = JSON.parse(localStorageData);
+                const todoFromLocalStorage = tasksFromLocalStorage.find((todo: ITodoCreate) => todo._id === id);
+                return todoFromLocalStorage;
+            }
+            return {};
+        };
+
         if (!todoData || !Object.keys(todoData).length) {
-            navigate('/');
-        }
-    }, [todoData, navigate]);
+            if (isUserLogin && id) {
+                dispatch(getEditTodo(id));
+            }
+            if (!isUserLogin && id) {
+                const editTodoLocalStorage = fetchTodoFromLocalStorage();
+                dispatch(saveEditTodo(editTodoLocalStorage));
+            }
+        } 
+    }, [todoData, dispatch, id, isUserLogin]);
 
     useEffect(() => {
         if (selectedUsers.length > 0) {
@@ -123,17 +196,7 @@ const EditTodo: React.FC<EditTodoProps> = ({ todoData }) => {
         }
     };
 
-    const { control, handleSubmit, reset } = useForm<ITodoCreate>({
-        defaultValues: {
-            additionalInfo: additionalInfoInitial,
-            dateFrom: dateFromInitial,
-            dateTo: dateToInitial,
-            otherMembers: otherMembersInitial,
-            part: { value: partInitial, label: partInitial },
-            subject: subjectInitial,
-            saveAfterDeadline: saveAfterDeadlineInitial,
-        },
-    });
+    
 
     const onSubmit = async (data: ITodoCreate) => {
         const finalData: ITodoCreate = {
@@ -144,7 +207,7 @@ const EditTodo: React.FC<EditTodoProps> = ({ todoData }) => {
             additionalInfo: data.additionalInfo,
             otherMembers: previewData.otherMembers,
             saveAfterDeadline: data.saveAfterDeadline,
-            _id: todoData._id,
+            _id: _idInitial,
         }
 
         if (!isUserLogin) {
@@ -162,12 +225,15 @@ const EditTodo: React.FC<EditTodoProps> = ({ todoData }) => {
             await dispatch(editTodo(finalData));
         }
 
-        reset();
+        reset({
+            ...initialState
+        });
         setShowUsersList(false);
         setSelectedUsers([]);
         setSelectedDateFrom(moment());
         setSelectedDateTo(moment());
         setPreviewData(initialState);
+        setPartInitial('');
         naviagteToList();
     };
 
@@ -238,7 +304,7 @@ const EditTodo: React.FC<EditTodoProps> = ({ todoData }) => {
                             control={control}
                             name="subject"
                             rules={{ required: true}}
-                            render={({ field: {onChange, value}, fieldState }) => (
+                            render={({ field: { onChange, value }, fieldState }) => (
                             <TextField
                                 value={value}
                                 control={control}

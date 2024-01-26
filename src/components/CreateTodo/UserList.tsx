@@ -5,19 +5,25 @@ import { fields } from '../Shared/TextField/fields'
 import s from './UserList.module.scss'
 
 export interface IUserList {
-    arrayUser: string[]; 
-    selectedUsers: string[]; 
+    arrayUser: string[];
+    selectedUsers: string[];
     setSelectedUsers: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const UserList: React.FC<IUserList> = ({ arrayUser, selectedUsers, setSelectedUsers }) => {
     const [finalListUser, setFinalListUser] = useState<string[]>(arrayUser);
+    
+    const [checkedUsers, setCheckedUsers] = useState<string[]>(selectedUsers.length > 0 ? selectedUsers[0].split(', ') : []);
 
     const handleUserSelection = (email: string) => {
-        if (selectedUsers.includes(email)) {
-            setSelectedUsers(selectedUsers.filter((user) => user !== email));
+        if (checkedUsers.includes(email)) {
+            const processArray = checkedUsers.filter((user) => user !== email);
+            setSelectedUsers([processArray.join(', ')]);
+            setCheckedUsers(processArray);
         } else {
-            setSelectedUsers([...selectedUsers, email]);
+            const processArray = [...checkedUsers, email];
+            setSelectedUsers([processArray.join(', ')]);
+            setCheckedUsers(processArray);
         }
     };
 
@@ -45,7 +51,7 @@ const UserList: React.FC<IUserList> = ({ arrayUser, selectedUsers, setSelectedUs
                     <input
                         type="checkbox"
                         className={s.checkbox}
-                        checked={selectedUsers.includes(email)}
+                        checked={checkedUsers.includes(email)}
                         onChange={() => handleUserSelection(email)}
                     />
                     {email}

@@ -11,8 +11,8 @@ import {
   IAuth,
 } from '../components/types/auth/axios-auth';
 
-// const REACT_APP_API_URL = 'http://localhost:4000';
-const REACT_APP_API_URL = 'https://notes-organizer-backend-20095b30617d.herokuapp.com/';
+const REACT_APP_API_URL = 'http://localhost:4000';
+// const REACT_APP_API_URL = 'https://notes-organizer-backend-20095b30617d.herokuapp.com/';
 
 export const instance = axios.create({
   baseURL: REACT_APP_API_URL,
@@ -44,8 +44,9 @@ instance.interceptors.response.use(
     ) {
       try {
         const authData = await getAuthDataFromLocalStorage();
-        if (authData) {
+        if (authData.refreshToken) {
           const { refreshToken, sid } = authData;
+
           token.set(refreshToken);
           const { data } = await instance.post('/auth/refresh', { sid });
           token.unset();
@@ -61,12 +62,12 @@ instance.interceptors.response.use(
             JSON.stringify(authNewData)
           );
         } else {
-          return;
+          return Promise.reject(error);
         }
 
         if (error.config.url === '/auth/current') {
           const authData = await getAuthDataFromLocalStorage();
-          if (authData) {
+          if (authData.accessToken) {
             const { accessToken, refreshToken, sid } = authData;
             const originalRequest = error.config;
             originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
@@ -77,17 +78,17 @@ instance.interceptors.response.use(
             };
             return instance(originalRequest);
           } else {
-            return;
+            return Promise.reject(error);
           }
         } else {
           const authData = await getAuthDataFromLocalStorage();
-          if (authData) {
+          if (authData.accessToken) {
             const { accessToken } = authData;
             const originalRequest = error.config;
             originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
             return instance(originalRequest);
           } else {
-            return;
+            return Promise.reject(error);
           }
         }
       } catch (error) {
@@ -102,8 +103,8 @@ instance.interceptors.response.use(
         refreshToken: null,
         sid: null,
       };
-      localStorage.setItem('easy-shop.authData', JSON.stringify(authData));
-      return;
+      localStorage.setItem('notes-organizer.authData', JSON.stringify(authData));
+      return Promise.reject(error);
     } else {
       return Promise.reject(error);
     }

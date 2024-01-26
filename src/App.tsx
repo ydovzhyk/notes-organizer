@@ -84,9 +84,7 @@ const App: React.FC = () => {
   // render last visited page
   useEffect(() => {
     const currentPath = location.pathname;
-    console.log('currentPath', currentPath);
     const currentPathSearch = location.search;
-    console.log('currentPathSearch', currentPathSearch);
 
     const getPageInfo = localStorage.getItem('notes-organizer-page-info');
     if (getPageInfo) {

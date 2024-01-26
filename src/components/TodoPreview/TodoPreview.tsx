@@ -46,7 +46,7 @@ const TodoPreview: React.FC<ITodoPrewievProps> = ({ additionalInfo, dateFrom, da
     }
 
     const goToEditTodo = () => {
-        navigate('/edit', {
+        navigate(`/edit/${_id}`, {
             state: {
                 additionalInfo,
                 dateFrom,
