@@ -12,7 +12,7 @@ const Login = lazy(() => import('../../components/Auth/Login/Login')); // Імп
 const Register = lazy(() => import('../../components/Auth/Register/Register')); 
 const EditPage = lazy(() => import('../../pages/EditPage/EditPage'));
 
-const basePath = process.env.NODE_ENV === 'production' ? '/notes-organizer' : '/';
+// const basePath = process.env.NODE_ENV === 'production' ? '/notes-organizer' : '/';
 
 const UserRoutes: React.FC = () => {
 //   return (
