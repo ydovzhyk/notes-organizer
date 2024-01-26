@@ -35,8 +35,8 @@ const UserRoutes: React.FC = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route element={<PublicRoute />}>
-          {/* <Route path="/" element={<HomePage />} /> */}
-          <Route path={`${basePath}`} element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path={`${basePath}`} element={<HomePage />} /> */}
           <Route path="/list" element={<TodoListPage />} />
           <Route path="/edit/:id" element={<EditPage />} />
           <Route path="/auth/*" element={<AuthPage />}>
