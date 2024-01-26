@@ -11,8 +11,8 @@ import {
   IAuth,
 } from '../components/types/auth/axios-auth';
 
-const REACT_APP_API_URL = 'http://localhost:4000';
-// const REACT_APP_API_URL = 'https://notes-organizer-backend-20095b30617d.herokuapp.com/';
+// const REACT_APP_API_URL = 'http://localhost:4000';
+const REACT_APP_API_URL = 'https://notes-organizer-backend-20095b30617d.herokuapp.com/';
 
 export const instance = axios.create({
   baseURL: REACT_APP_API_URL,
