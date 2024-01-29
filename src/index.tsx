@@ -1,6 +1,5 @@
-// import ReactDOM from 'react-dom/client';
-// import { BrowserRouter } from 'react-router-dom';
-import { HashRouter as Router } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './Redux/store'; 
@@ -23,13 +22,30 @@ import './styles/styles.scss';
 //   </BrowserRouter>
 // );
 
-<Router>
-  <Provider store={store}>
-    <PersistGate loading={<Loader />} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
-</Router>
+if (process.env.NODE_ENV === 'production') {
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <HashRouter>
+      <Provider store={store}>
+        <PersistGate loading={<Loader />} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </HashRouter>
+  );
+}
+
+if (process.env.NODE_ENV === 'development') {
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate loading={<Loader />} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
+  );
+}
+
 
 //потрібно додати react-router-dom, redux, і redux-persist до додатку та налаштувати їх, а також включити роутер та редукс у вашому вихідному файлі index.tsx.
 //Встановіть необхідні залежності:
