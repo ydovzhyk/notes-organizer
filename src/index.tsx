@@ -10,10 +10,12 @@ import App from './App';
 import Loader from './components/Loader/Loader';
 import './styles/styles.scss';
 
-// const basename = process.env.PUBLIC_URL || '/';
+const basename = process.env.PUBLIC_URL || '/';
+
+console.log('Це basename', basename);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <BrowserRouter>
+  <BrowserRouter basename={basename}>
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
         <App />
