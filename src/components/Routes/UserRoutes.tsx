@@ -29,7 +29,8 @@ const UserRoutes: React.FC = () => {
             <Route path="register" element={<Register />} />
           </Route>
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        {/* Видаліть `path="*"` для забезпечення, що NotFoundPage відпрацьовує тільки в разі, якщо інші не відповідають */}
+        <Route element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
