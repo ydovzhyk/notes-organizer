@@ -17,40 +17,20 @@ const UserRoutes: React.FC = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route
-          element={<PublicRoute />}
-          path="/notes-organizer"
-        >
-          <Route index element={<HomePage />} />
-          <Route path="list" element={<TodoListPage />} />
-          <Route path="edit/:id" element={<EditPage />} />
-          <Route path="auth/*" element={<AuthPage />}>
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/notes-organizer" element={<HomePage />} />
+          <Route path="/list" element={<TodoListPage />} />
+          <Route path="/edit/:id" element={<EditPage />} />
+          <Route path="/auth/*" element={<AuthPage />}>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Route>
-        </Route>
-        {/* Видаліть `path="*"` для забезпечення, що NotFoundPage відпрацьовує тільки в разі, якщо інші не відповідають */}
-        <Route element={<NotFoundPage />} />
+          </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
-
-  // return (
-  //   <Suspense fallback={<Loader />}>
-  //     <Routes>
-  //       <Route element={<PublicRoute />}>
-  //         <Route path="/" element={<HomePage />} />
-  //         <Route path="/list" element={<TodoListPage />} />
-  //         <Route path="/edit/:id" element={<EditPage />} />
-  //         <Route path="/auth/*" element={<AuthPage />}>
-  //           <Route path="login" element={<Login />} />
-  //           <Route path="register" element={<Register />} />
-  //         </Route>
-  //       </Route>
-  //       <Route path="*" element={<NotFoundPage />} />
-  //     </Routes>
-  //   </Suspense>
-  // );
 };
 
 export default UserRoutes;
