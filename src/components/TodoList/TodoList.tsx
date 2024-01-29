@@ -175,10 +175,7 @@ const TodoList: React.FC = () => {
         }
         
         const { urlData, weekPage, searchPage } = parseURL();
-        console.log('Це urlData', urlData);
-        console.log('Це weekPage', weekPage);
-        console.log('Це searchPage', searchPage);
-        
+
         separationOfProcesses(urlData, weekPage, searchPage);
 
     }, [dispatch, userLogin]);
@@ -187,7 +184,7 @@ const TodoList: React.FC = () => {
     useEffect(() => {
         const paramsURL = parseURL();
         const newUrl = buildURL(paramsURL.urlData, searchPage, weekPage);
-        console.log('Url який сформувався і ми переходимо на нього', newUrl)
+
         navigate(newUrl);
     }, [weekPage, searchPage, navigate]);
 

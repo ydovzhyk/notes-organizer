@@ -106,7 +106,7 @@ const auth = createSlice({
     });
     builder.addCase(getCurrentUser.rejected, (store, action: any) => {
         store.loading = false;
-        console.log('Це в слайсах',action.payload)
+        
         store.error = action.payload.data?.message || 'Oops, something went wrong, try again';
     });
 }   
