@@ -175,7 +175,11 @@ const TodoList: React.FC = () => {
         }
         
         const { urlData, weekPage, searchPage } = parseURL();
-            separationOfProcesses(urlData, weekPage, searchPage);
+        console.log('Це urlData', urlData);
+        console.log('Це weekPage', weekPage);
+        console.log('Це searchPage', searchPage);
+        
+        separationOfProcesses(urlData, weekPage, searchPage);
 
     }, [dispatch, userLogin]);
 
