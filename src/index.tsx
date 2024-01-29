@@ -10,13 +10,23 @@ import App from './App';
 import Loader from './components/Loader/Loader';
 import './styles/styles.scss';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+// const root = ReactDOM.createRoot(
+//   document.getElementById('root') as HTMLElement
+// );
 
 const basename = process.env.PUBLIC_URL || '/';
 
-root.render(
+// root.render(
+//   <BrowserRouter basename={basename}>
+//     <Provider store={store}>
+//       <PersistGate loading={<Loader />} persistor={persistor}>
+//         <App />
+//       </PersistGate>
+//     </Provider>
+//   </BrowserRouter>
+// );
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter basename={basename}>
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
@@ -25,6 +35,8 @@ root.render(
     </Provider>
   </BrowserRouter>
 );
+
+
 
 //потрібно додати react-router-dom, redux, і redux-persist до додатку та налаштувати їх, а також включити роутер та редукс у вашому вихідному файлі index.tsx.
 //Встановіть необхідні залежності:
