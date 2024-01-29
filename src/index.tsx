@@ -20,29 +20,16 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   </BrowserRouter>
 );
 
-// if (process.env.NODE_ENV === 'production') {
-  // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  //   <HashRouter>
-  //     <Provider store={store}>
-  //       <PersistGate loading={<Loader />} persistor={persistor}>
-  //         <App />
-  //       </PersistGate>
-  //     </Provider>
-  //   </HashRouter>
-  // );
-// }
+//для деплоя на GitHub page
+//<BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
 
-// if (process.env.NODE_ENV === 'development') {
-//   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-//     <BrowserRouter>
-//       <Provider store={store}>
-//         <PersistGate loading={<Loader />} persistor={persistor}>
-//           <App />
-//         </PersistGate>
-//       </Provider>
-//     </BrowserRouter>
-//   );
-// }
+//UserRoutes.tsx
+//<Route path="" element={<HomePage />} />
+
+//package.json 
+//"predeploy": "npm run build",
+// "deploy": "gh-pages -d build",
+// "build": "react-scripts build && cp build/index.html build/404.html"
 
 //потрібно додати react-router-dom, redux, і redux-persist до додатку та налаштувати їх, а також включити роутер та редукс у вашому вихідному файлі index.tsx.
 //Встановіть необхідні залежності:
