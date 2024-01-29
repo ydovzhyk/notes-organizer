@@ -10,7 +10,7 @@ import App from './App';
 import Loader from './components/Loader/Loader';
 import './styles/styles.scss';
 
-const basename = process.env.PUBLIC_URL || '/';
+// const basename = process.env.PUBLIC_URL || '/';
 
 // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 //   <BrowserRouter basename={basename}>
