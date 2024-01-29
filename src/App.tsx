@@ -66,7 +66,6 @@ const App: React.FC = () => {
       dispatch(getCurrentUser());
     };
     const urlParams = new URLSearchParams(window.location.search);
-    console.log('Ми в google auth, це urlParams', urlParams)
     const accessToken = urlParams.get('accessToken');
     const refreshToken = urlParams.get('refreshToken');
     const sid = urlParams.get('sid');
