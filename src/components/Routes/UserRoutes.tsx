@@ -26,7 +26,7 @@ const UserRoutes: React.FC = () => {
             <Route path="register" element={<Register />} />
           </Route>
           </Route>
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
