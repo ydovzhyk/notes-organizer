@@ -36,6 +36,7 @@ const chunkArray = (array: ITodoServer[],  chunkSize: number) => {
 };
 
 const TodoList: React.FC = () => { 
+    
     const vpHeight = window.innerHeight;
     const [dynamicStyles, setDynamicStyles] = useState({});
     const dispatch = useAppDispatch();
