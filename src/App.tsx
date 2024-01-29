@@ -54,6 +54,8 @@ const App: React.FC = () => {
     dispatch(getTechnicalData());
   }, [dispatch]);
 
+
+  
   //google auth
   useEffect(() => {
     const updateUserInfo = async (userData: IAuth) => {

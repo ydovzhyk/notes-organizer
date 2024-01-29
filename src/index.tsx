@@ -14,7 +14,8 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const basename = process.env.NODE_ENV === 'production' ? '/notes-organizer' : '/';
+// const basename = process.env.NODE_ENV === 'production' ? '/notes-organizer' : '/';
+const basename = process.env.PUBLIC_URL || '/';
 
 root.render(
   <BrowserRouter basename={basename}>
