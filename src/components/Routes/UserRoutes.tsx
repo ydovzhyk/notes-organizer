@@ -12,31 +12,13 @@ const Login = lazy(() => import('../../components/Auth/Login/Login')); // Імп
 const Register = lazy(() => import('../../components/Auth/Register/Register')); 
 const EditPage = lazy(() => import('../../pages/EditPage/EditPage'));
 
-// const basePath = process.env.NODE_ENV === 'production' ? '/notes-organizer' : '/';
-
 const UserRoutes: React.FC = () => {
-//   return (
-//   <Suspense fallback={<Loader />}>
-//     <Routes>
-//       <Route element={<PublicRoute />}>
-//         <Route path={basePath} element={<HomePage />} />
-//         <Route path={`${basePath}/list`} element={<TodoListPage />} />
-//         <Route path={`${basePath}/edit/:id`} element={<EditPage />} />
-//         <Route path={`${basePath}/auth/*`} element={<AuthPage />}>
-//           <Route path="login" element={<Login />} />
-//           <Route path="register" element={<Register />} />
-//         </Route>
-//       </Route>
-//       <Route path="*" element={<NotFoundPage />} />
-//     </Routes>
-//   </Suspense>
-// );
+
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path={`${basePath}`} element={<HomePage />} /> */}
           <Route path="/list" element={<TodoListPage />} />
           <Route path="/edit/:id" element={<EditPage />} />
           <Route path="/auth/*" element={<AuthPage />}>
