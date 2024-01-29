@@ -20,10 +20,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Update package.json for GitHub Pages
-        run: |
-          echo "$(jq '.homepage = "https://ydovzhyk.github.io/notes-organizer"' package.json)" > ./package.json
-        working-directory: .
+      # - name: Update package.json for GitHub Pages
+      #   run: |
+      #     echo "$(jq '.homepage = "https://ydovzhyk.github.io/notes-organizer"' package.json)" > ./package.json
+      #   working-directory: .
 
       - name: Build the application
         run: npm run build
