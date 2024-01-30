@@ -89,11 +89,10 @@ const SearchTodo: React.FC = () => {
         } else {
             array = await dispatch(getSearchTodo(finalData));
         }
-        
-        if (isUserLogin && array.payload.arrayTodosSearch.length > 0) {
+        if (isUserLogin && array.payload && array.payload.arrayTodosSearch && array.payload.arrayTodosSearch.length > 0) {
             searchPage = 1;
         }
-        if (!isUserLogin && array.payload.length > 0) {
+        if (!isUserLogin && array.payload && array.payload.length > 0) {
             searchPage = 1;
         }
 

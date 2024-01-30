@@ -56,8 +56,8 @@ const TodoList: React.FC = () => {
     const [currentGroupSearchIndex, setCurrentGroupSearchIndex] = useState(0);
     const [currentGroupWeekIndex, setCurrentGroupWeekIndex] = useState(0);
 
-    const chunkedTodosSearch = chunkArray(arrayTodosSearch || [], itemsPerPage);
-    const chunkedTodosWeek = chunkArray(arrayTodosWeek || [], itemsPerPage);
+    const chunkedTodosSearch = arrayTodosSearch ? chunkArray(arrayTodosSearch, itemsPerPage) : [];
+    const chunkedTodosWeek = arrayTodosWeek ? chunkArray(arrayTodosWeek, itemsPerPage) : [];
     const currentGroupSearch = chunkedTodosSearch[currentGroupSearchIndex] || [];
     const currentGroupWeek = chunkedTodosWeek[currentGroupWeekIndex] || [];
 
