@@ -19,9 +19,14 @@ and React.
 - **Guest Mode:** Explore and utilize the application without the need for
   registration.
 - **Limited Features:** Access essential features, such as note creation,
-  editing, and deletion, even without a registered account.
+  editing even without a registered account.
 - **Google Registration:** Register and log in using your Google account to
   unlock additional features and personalized settings.
+
+### Note Sharing
+
+- **Note Collaboration:** Share your notes with other registered users for
+  collaborative work.
 
 ### Organization
 
@@ -71,6 +76,14 @@ and React.
   - [Create React App](https://create-react-app.dev/)
   - [Redux Toolkit](https://redux-toolkit.js.org/)
   - [React Hook Form](https://react-hook-form.com/)
+
+## Backend Server
+
+The Notes Organizer application is supported by a backend server hosted on
+Heroku. You can access the server at
+[https://notes-organizer-backend-20095b30617d.herokuapp.com/](https://notes-organizer-backend-20095b30617d.herokuapp.com/).
+The server's source code is available on GitHub at
+[ydovzhyk/notes-organizer-backend](https://github.com/ydovzhyk/notes-organizer-backend).
 
 ## Getting Started
 
