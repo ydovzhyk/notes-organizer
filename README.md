@@ -87,18 +87,18 @@ The server's source code is available on GitHub at
 
 ## Getting Started
 
-### GitHub Pages
+#### GitHub Pages
 
 Visit the
 [Notes Organizer GitHub Pages](https://ydovzhyk.github.io/notes-organizer/) to
 explore and interact with the application online.
 
-### Docker Container
+#### Docker Container
 
 Explore the Notes Organizer Docker Container on
 [GitHub Packages](https://github.com/users/ydovzhyk/packages/container/package/notes-organizer).
 
-### Deployment and Local Setup
+#### Deployment and Local Setup
 
 Follow these steps to deploy the application locally or run it on your computer:
 
