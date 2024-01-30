@@ -31,7 +31,7 @@ and React.
 ### Organization
 
 - **Categorization:** Categorize notes to maintain a well-organized system.
-- **Task List:** View tasks to be completed within the next 7 days.
+- **Note List:** View tasks to be completed within the next 7 days.
 - **Search Functionality:** Easily search for notes based on various criteria.
 
 ### User Experience
@@ -102,14 +102,14 @@ Explore the Notes Organizer Docker Container on
 
 Follow these steps to deploy the application locally or run it on your computer:
 
-# Clone the repository
+#### Clone the repository
 
 git clone https://github.com/ydovzhyk/notes-organizer.git cd notes-organizer
 
-# Install dependencies
+#### Install dependencies
 
 npm install
 
-# Start the development server
+#### Start the development server
 
 npm start
