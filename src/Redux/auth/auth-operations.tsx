@@ -8,7 +8,7 @@ import {
 } from '../../api/auth';
 
 import { IUserDataRegister, IUserDataLogin } from '../../components/types/auth/auth';
-import { IRegistrationResponse, ILoginResponse, ILogoutResponse, IToken, IAuth } from '../../components/types/auth/axios-auth';
+import { IRegistrationResponse, ILoginResponse, ILogoutResponse, IAuth } from '../../components/types/auth/axios-auth';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -45,14 +45,9 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const authDataJSON = localStorage.getItem('notes-organizer.authData');
-      if (authDataJSON) {
-        const authData = JSON.parse(authDataJSON);
-        const accessToken: IToken = authData.accessToken;
-        const data: ILogoutResponse = await axiosLogout(accessToken);
+        const data: ILogoutResponse = await axiosLogout();
         localStorage.removeItem('notes-organizer.authData');
         return data;
-      }
     } catch (error: any) {
         const { data, status } = error.response || {};
         const customError = { data, status };
@@ -67,9 +62,8 @@ export const getCurrentUser = createAsyncThunk(
     try {
       const authDataJSON = localStorage.getItem('notes-organizer.authData')!;
       const authData = JSON.parse(authDataJSON);
-      const accessToken: IToken = authData.accessToken;
       const userData: IAuth = authData;
-      const data: ILoginResponse = await axiosGetCurrentUser(userData, accessToken);
+      const data: ILoginResponse = await axiosGetCurrentUser(userData);
       return data;
     } catch (error: any) {
         const { data, status } = error.response || {};

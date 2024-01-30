@@ -15,7 +15,7 @@ import { getAuthError } from './Redux/auth/auth-selectors';
 import { getTodoError } from './Redux/todo/todo-selectors';
 import { getTechnicalError } from './Redux/technical/technical-selectors';
 
-import { clearUserError } from './Redux/auth/auth-slice';
+import { clearUserError, clearUser } from './Redux/auth/auth-slice';
 import { clearTodoError } from './Redux/todo/todo-slice';
 import { clearTechnicalDataError } from './Redux/technical/technical-slice';
 
@@ -54,7 +54,13 @@ const App: React.FC = () => {
     dispatch(getTechnicalData());
   }, [dispatch]);
 
-
+  useEffect(() => {
+    if (error === 'Refresh end, please login again') {
+      dispatch(clearUser());
+    } else {
+      return;
+    }
+  }, [dispatch, error]);
 
   //google auth
   useEffect(() => {

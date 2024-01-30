@@ -114,7 +114,7 @@ const TodoList: React.FC = () => {
                 //If we don't have a search url
                 if (userLogin) {
                     arrayWeek = await dispatch(getTodosWeek()) as any;
-                    if (arrayWeek.payload && arrayWeek.payload.arrayTodosWeek.length > 0) {
+                    if (arrayWeek.payload && arrayWeek.payload.arrayTodosWeek && arrayWeek.payload.arrayTodosWeek.length > 0) {
                         dispatch(saveWeekPage(numberWeekPage ? numberWeekPage : 1));
                         setCurrentGroupWeekIndex(numberWeekPage ? numberWeekPage - 1 : 0);
                     } else {
@@ -136,7 +136,7 @@ const TodoList: React.FC = () => {
                 const finalData: ITodoSearch = { searchByPart, searchByPhrase, searchByDate, searchByStatus, searchByOtherMembers };
                 if (userLogin) {
                     arrayWeek = await dispatch(getTodosWeek()) as any;
-                    if (arrayWeek.payload && arrayWeek.payload.arrayTodosWeek.length > 0) {
+                    if (arrayWeek.payload && arrayWeek.payload.arrayTodosWeek && arrayWeek.payload.arrayTodosWeek.length > 0) {
                         dispatch(saveWeekPage(numberWeekPage ? numberWeekPage : 1));
                         setCurrentGroupWeekIndex(numberWeekPage ? numberWeekPage - 1 : 0);
                     } else {
