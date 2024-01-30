@@ -1,46 +1,102 @@
-# Getting Started with Create React App
+# Notes Organizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.png?v=101)](https://www.typescriptlang.org/)
 
-## Available Scripts
+A simple and efficient notes organizer application developed using TypeScript
+and React.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Note Management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Add Notes:** Create new notes with a user-friendly interface.
+- **Edit Notes:** Modify existing notes to keep information up-to-date.
+- **Automatic Deletion:** Enable automatic deletion for notes that are no longer
+  needed.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### User Access
 
-### `npm test`
+- **Guest Mode:** Explore and utilize the application without the need for
+  registration.
+- **Limited Features:** Access essential features, such as note creation,
+  editing, and deletion, even without a registered account.
+- **Google Registration:** Register and log in using your Google account to
+  unlock additional features and personalized settings.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Organization
 
-### `npm run build`
+- **Categorization:** Categorize notes to maintain a well-organized system.
+- **Task List:** View tasks to be completed within the next 7 days.
+- **Search Functionality:** Easily search for notes based on various criteria.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### User Experience
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Intuitive Interface:** User-friendly design for seamless navigation.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Accessibility
 
-### `npm run eject`
+- **Responsive Design:** Ensure a responsive layout for accessibility on various
+  devices.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technologies Used
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Frontend:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  - [React](https://reactjs.org/)
+  - [React Router](https://reactrouter.com/)
+  - [Redux](https://redux.js.org/)
+  - [TypeScript](https://www.typescriptlang.org/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Styling:**
 
-## Learn More
+  - [Sass](https://sass-lang.com/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Date and Time Handling:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - [date-fns](https://date-fns.org/)
+  - [moment](https://momentjs.com/)
+
+- **API Requests:**
+
+  - [axios](https://axios-http.com/)
+
+- **UI Components:**
+
+  - [react-icons](https://react-icons.github.io/react-icons/)
+  - [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner)
+  - [react-datepicker](https://reactdatepicker.com/)
+  - [react-select](https://react-select.com/)
+
+- **Development Tools:**
+  - [Create React App](https://create-react-app.dev/)
+  - [Redux Toolkit](https://redux-toolkit.js.org/)
+  - [React Hook Form](https://react-hook-form.com/)
+
+## Getting Started
+
+### GitHub Pages
+
+Visit the
+[Notes Organizer GitHub Pages](https://ydovzhyk.github.io/notes-organizer/) to
+explore and interact with the application online.
+
+### Docker Container
+
+Explore the Notes Organizer Docker Container on
+[GitHub Packages](https://github.com/users/ydovzhyk/packages/container/package/notes-organizer).
+
+### Deployment and Local Setup
+
+Follow these steps to deploy the application locally or run it on your computer:
+
+# Clone the repository
+
+git clone https://github.com/ydovzhyk/notes-organizer.git cd notes-organizer
+
+# Install dependencies
+
+npm install
+
+# Start the development server
+
+npm start
