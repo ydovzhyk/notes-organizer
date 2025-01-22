@@ -11,7 +11,7 @@ import {
 } from '../components/types/auth/axios-auth';
 
 // const REACT_APP_API_URL = 'http://localhost:4000';
-const REACT_APP_API_URL = 'https://notes-organizer-backend-20095b30617d.herokuapp.com/';
+const REACT_APP_API_URL = 'https://notes-organizer-backend-904276e13746.herokuapp.com/';
 
 export const instance = axios.create({
   baseURL: REACT_APP_API_URL,
@@ -115,6 +115,7 @@ instance.interceptors.response.use(
     }
   }
 );
+
 
 export const axiosRegister = async ( userData: IUserDataRegister ): Promise<IRegistrationResponse> => {
   const { data }: { data: IRegistrationResponse } = await instance.post('/auth/register', userData);
