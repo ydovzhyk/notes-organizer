@@ -81,7 +81,7 @@ and React.
 
 The Notes Organizer application is supported by a backend server hosted on
 Heroku. You can access the server at
-[https://notes-organizer-backend-20095b30617d.herokuapp.com/](https://notes-organizer-backend-20095b30617d.herokuapp.com/).
+[https://notes-organizer-backend-904276e13746.herokuapp.com/](https://notes-organizer-backend-904276e13746.herokuapp.com/).
 The server's source code is available on GitHub at
 [ydovzhyk/notes-organizer-backend](https://github.com/ydovzhyk/notes-organizer-backend).
 
