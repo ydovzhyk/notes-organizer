@@ -22,20 +22,13 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
+  const currentOrigin = encodeURIComponent(window.location.origin);
+  const REACT_APP_API_URL = 'https://notes-organizer-backend-904276e13746.herokuapp.com';
+
   const googleText =
     location.pathname === '/auth/login'
       ? 'Увійти швидко з Google'
       : 'Зареєструватись швидко з Google';
-
-  const versionApp = () => {
-    if (process.env.NODE_ENV === 'production') {
-      return 'https://notes-organizer-backend-904276e13746.herokuapp.com';
-    }
-    if (process.env.NODE_ENV === 'development') {
-      // return 'http://localhost:4000';
-      return 'https://notes-organizer-backend-904276e13746.herokuapp.com';
-    }
-  };
 
   const { control, handleSubmit, reset } = useForm<IUserDataLogin>({
     defaultValues: {
@@ -74,7 +67,7 @@ const Login: React.FC = () => {
             </NavLink>
           </div>
           <Text textClass="google-text" text={googleText} />
-          <a href={`${versionApp()}/google`} className={s.googleBtn}>
+          <a href={`${REACT_APP_API_URL}/google?origin=${currentOrigin}`}>
             <FcGoogle size={24} />
             Google
           </a>
