@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import { getLogin } from './../../Redux/auth/auth-selectors';
-import { getCurrentUser } from '../../Redux/auth/auth-operations'
+import { getCurrentUser } from '../../Redux/auth/auth-operations';
 import { useAppDispatch } from '../../hooks/hooks';
 
 const PublicRoute: React.FC = () => {
@@ -12,9 +12,9 @@ const PublicRoute: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const getAuthData = localStorage.getItem('notes-organizer.authData')
+      const getAuthData = localStorage.getItem('notes-organizer.authData');
       if (getAuthData) {
-        const authData = JSON.parse(getAuthData)
+        const authData = JSON.parse(getAuthData);
         if (!isLogin && authData && authData.accessToken) {
           await dispatch(getCurrentUser());
         } else {

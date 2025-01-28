@@ -3,7 +3,7 @@ import NotFound from '../../components/NotFound/NotFound';
 
 import s from '../../components/NotFound/NotFound.module.scss';
 
-const NotFoundPage: React.FC  = () => {
+const NotFoundPage: React.FC = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 

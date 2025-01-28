@@ -1,25 +1,12 @@
 @use '../../styles/mixins';
 
-.editTodo {
-  margin-top: 64px;
+.todoPart {
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(../../images/Auth/bg-register.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  justify-content: space-around;
+  align-items: center;
   @include mixins.mq(tablet) {
-    background-repeat: no-repeat;
+    flex-direction: row;
   }
-}
-
-.todoPart {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: row;
 }
 
 .textarea {
@@ -167,7 +154,10 @@
   }
 }
 
-.edit {
+.forum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   @include mixins.mq(tablet) {
     width: 39%;

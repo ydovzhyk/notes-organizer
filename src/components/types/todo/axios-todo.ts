@@ -1,21 +1,21 @@
-import { ITodoServer } from "./todo";
+import { ITodoServer } from './todo';
 
 export interface ICreateTodoResponse {
-    message: string,
+  message: string;
 }
 
 export interface ITodosWeekResponse {
-    arrayTodosWeek: ITodoServer[];
+  arrayTodosWeek: ITodoServer[];
 }
 
 export interface ITodosSearchResponse {
-    arrayTodosSearch: ITodoServer[];
+  arrayTodosSearch: ITodoServer[];
 }
 
 export interface ITodosSynchronizeResponse {
-    message: string,
+  message: string;
 }
 
 export interface ITodoIdResponse {
-    todo: ITodoServer,
+  todo: ITodoServer;
 }

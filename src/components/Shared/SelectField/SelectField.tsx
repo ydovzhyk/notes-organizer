@@ -33,24 +33,24 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   // const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   const customStyles: StylesConfig = {
-  control: (provided: any, state) => ({
-    ...provided,
-    fontSize: isMobile ? '14px' : isTablet ? '15px' : '16px',
-    height: isMobile ? '38px' : isTablet ? '38px' : '48px',
-    color: 'var(--second-text-color)',
-    pointerEvents: 'auto',
-    borderColor: state.isFocused ? 'white' : provided.borderColor,
-  }),
-  option: (styles, { isDisabled, isFocused, isSelected }) => {
-    const backgroundColor = isSelected
+    control: (provided: any, state) => ({
+      ...provided,
+      fontSize: isMobile ? '14px' : isTablet ? '15px' : '16px',
+      height: isMobile ? '38px' : isTablet ? '38px' : '48px',
+      color: 'var(--second-text-color)',
+      pointerEvents: 'auto',
+      borderColor: state.isFocused ? 'white' : provided.borderColor,
+    }),
+    option: (styles, { isDisabled, isFocused, isSelected }) => {
+      const backgroundColor = isSelected
         ? 'black'
         : isFocused
-        ? 'rgba(0, 0, 0, 0.3)' 
-        : 'white';
+          ? 'rgba(0, 0, 0, 0.3)'
+          : 'white';
 
-    const textColor = isSelected ? 'white' : 'black';
+      const textColor = isSelected ? 'white' : 'black';
 
-    return {
+      return {
         ...styles,
         backgroundColor: isDisabled ? undefined : backgroundColor,
         color: isDisabled ? '#ccc' : textColor,
@@ -59,16 +59,20 @@ const SelectField: React.FC<ISelectFieldProps> = ({
         alignItems: 'center',
         cursor: isDisabled ? 'not-allowed' : 'default',
         ':active': {
-            ...styles[':active'],
-            backgroundColor: !isDisabled ? isSelected ? 'black' : 'rgba(0, 0, 0, 0.3)' : undefined,
+          ...styles[':active'],
+          backgroundColor: !isDisabled
+            ? isSelected
+              ? 'black'
+              : 'rgba(0, 0, 0, 0.3)'
+            : undefined,
         },
-    };
+      };
     },
     menu: (provided, state) => ({
       ...provided,
       marginTop: isMobile ? '-8px' : isTablet ? '-8px' : '2px',
     }),
-};
+  };
 
   return (
     <label className={labelClass}>
@@ -82,12 +86,12 @@ const SelectField: React.FC<ISelectFieldProps> = ({
         options={options}
         styles={customStyles}
         defaultValue={defaultValue}
-        theme={(theme) => ({
+        theme={theme => ({
           ...theme,
           borderRadius: 0,
           colors: {
-          ...theme.colors,
-          primary: 'black',
+            ...theme.colors,
+            primary: 'black',
           },
         })}
       />

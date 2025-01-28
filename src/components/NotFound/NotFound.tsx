@@ -13,10 +13,13 @@ interface NotFoundProps {
   classComp: string;
 }
 
-
-const NotFound: React.FC<NotFoundProps> = ({ textContent, backLink, classComp }) => {
+const NotFound: React.FC<NotFoundProps> = ({
+  textContent,
+  backLink,
+  classComp,
+}) => {
   const navigate = useNavigate();
-  
+
   const handleDismissClick = () => {
     navigate('/');
   };
@@ -34,9 +37,9 @@ const NotFound: React.FC<NotFoundProps> = ({ textContent, backLink, classComp })
       <Text text="Oh!" textClass="textMessage" />
       <Text text={textContent} textClass="textMessageNotFound" />
 
-        <Link to={backLink}>
-          <Button text="Go back" btnClass="btnLight" />
-        </Link>
+      <Link to={backLink}>
+        <Button text="Go back" btnClass="btnLight" />
+      </Link>
     </div>
   );
 };

@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import s from './ErrorMessage.module.scss';
 
 interface IErrorMessageProps {
-    text: string;
-    onDismiss: () => void;
+  text: string;
+  onDismiss: () => void;
 }
 
 const ErrorMessage: React.FC<IErrorMessageProps> = ({ text, onDismiss }) => {
@@ -45,6 +45,6 @@ const ErrorMessage: React.FC<IErrorMessageProps> = ({ text, onDismiss }) => {
       <Text text={text} textClass="textError" />
     </div>
   );
-}
+};
 
 export default ErrorMessage;

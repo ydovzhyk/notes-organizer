@@ -1,4 +1,4 @@
-import { ITextFieldProps } from "./TextField";
+import { ITextFieldProps } from './TextField';
 
 export const fields = {
   username: {
@@ -22,7 +22,8 @@ export const fields = {
     name: 'password',
     type: 'password',
     placeholder: 'Password*',
-    title: '*The Password field must be more than 2 and less than 21 characters',
+    title:
+      '*The Password field must be more than 2 and less than 21 characters',
     required: true,
   } as ITextFieldProps,
   subject: {

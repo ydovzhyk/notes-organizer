@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from './Redux/store';
 import UserRoutes from './components/Routes/UserRoutes';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { useAppDispatch } from './hooks/hooks';
 
 import { getCurrentUser } from './Redux/auth/auth-operations';
 import { getTechnicalData } from './Redux/technical/technical-operations';
 
-import { getAuthLoading } from './Redux/auth/auth-selectors';
+import { getAuthLoading, getLogin } from './Redux/auth/auth-selectors';
 import { getTodoLoading } from './Redux/todo/todo-selectors';
 import { getTechnicalLoading } from './Redux/technical/technical-selectors';
 import { getAuthError } from './Redux/auth/auth-selectors';
@@ -24,10 +25,16 @@ import Loader from './components/Loader';
 import ErrorMessage from './components/Shared/ErrorMessage';
 import { IAuth } from './components/types/auth/axios-auth';
 
+import bgImage from './images/Auth/bg-register.jpg';
+
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const isLogin = useSelector(getLogin);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  // const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+  // const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   const headerFooterHidden =
     location.pathname === '/auth/login' ||
@@ -148,12 +155,40 @@ const App: React.FC = () => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        width: '100%',
+        minHeight: '100vh',
+        height: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
+    >
       {loading && <Loader />}
       {!headerFooterHidden && <Header />}
-      <UserRoutes />
+      <div
+        style={{
+          marginTop:
+            isLogin && !isMobile
+              ? '64px'
+              : !isLogin && isMobile
+                ? '110px'
+                : isLogin && isMobile
+                  ? '64px'
+                  : '100px',
+          width: '100%',
+          height: 'auto',
+        }}
+      >
+        <UserRoutes />
+      </div>
       {error && <ErrorMessage text={`${error}`} onDismiss={resetError} />}
-    </>
+    </div>
   );
 };
 

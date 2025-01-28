@@ -7,19 +7,27 @@ import {
   axiosGetCurrentUser,
 } from '../../api/auth';
 
-import { IUserDataRegister, IUserDataLogin } from '../../components/types/auth/auth';
-import { IRegistrationResponse, ILoginResponse, ILogoutResponse, IAuth } from '../../components/types/auth/axios-auth';
+import {
+  IUserDataRegister,
+  IUserDataLogin,
+} from '../../components/types/auth/auth';
+import {
+  IRegistrationResponse,
+  ILoginResponse,
+  ILogoutResponse,
+  IAuth,
+} from '../../components/types/auth/axios-auth';
 
 export const register = createAsyncThunk(
   'auth/register',
   async (userData: IUserDataRegister, { rejectWithValue }) => {
     try {
-        const data: IRegistrationResponse = await axiosRegister(userData);
-        return data;
+      const data: IRegistrationResponse = await axiosRegister(userData);
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -31,27 +39,30 @@ export const login = createAsyncThunk(
       const data: ILoginResponse = await axiosLogin(userData);
       const { accessToken, refreshToken, sid } = data;
       const authData = { accessToken, refreshToken, sid };
-      localStorage.setItem('notes-organizer.authData', JSON.stringify(authData));
+      localStorage.setItem(
+        'notes-organizer.authData',
+        JSON.stringify(authData)
+      );
       return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
-        }
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
+  }
 );
 
 export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-        const data: ILogoutResponse = await axiosLogout();
-        localStorage.removeItem('notes-organizer.authData');
-        return data;
+      const data: ILogoutResponse = await axiosLogout();
+      localStorage.removeItem('notes-organizer.authData');
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -66,9 +77,9 @@ export const getCurrentUser = createAsyncThunk(
       const data: ILoginResponse = await axiosGetCurrentUser(userData);
       return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );

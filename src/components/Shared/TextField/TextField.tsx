@@ -1,4 +1,11 @@
-import { ChangeEvent, forwardRef, ChangeEventHandler, useState, useEffect, useCallback} from 'react';
+import {
+  ChangeEvent,
+  forwardRef,
+  ChangeEventHandler,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { FieldError, Control } from 'react-hook-form';
 import { useMediaQuery } from 'react-responsive';
 import { CiSearch } from 'react-icons/ci';
@@ -21,70 +28,80 @@ export interface ITextFieldProps {
   clearTextField?: boolean;
 }
 
-const TextField = forwardRef<HTMLInputElement, ITextFieldProps>((props, ref) => {
-  const labelClass = props.className ? `${s.label} ${s[props.className]}` : `${s.label}`;
-  const inputClass = props.className ? `${s.input} ${s[props.className]}` : `${s.input}`;
-  const spanClass = props.className ? `${s.span} ${s[props.className]}` : `${s.span}`;
-  const clearTextField = props.clearTextField;
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
-  const [inputValue, setInputValue] = useState<string>(props.value || '');
+const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
+  (props, ref) => {
+    const labelClass = props.className
+      ? `${s.label} ${s[props.className]}`
+      : `${s.label}`;
+    const inputClass = props.className
+      ? `${s.input} ${s[props.className]}`
+      : `${s.input}`;
+    const spanClass = props.className
+      ? `${s.span} ${s[props.className]}`
+      : `${s.span}`;
+    const clearTextField = props.clearTextField;
+    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+    const [inputValue, setInputValue] = useState<string>(props.value || '');
 
-  const [isValue, setIsValue] = useState<boolean>(false);
+    const [isValue, setIsValue] = useState<boolean>(false);
 
-  const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value; 
-    setInputValue(newValue);
+    const handleInputChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value;
+        setInputValue(newValue);
 
-    if (props.handleChange) {
-      props.handleChange(e);
-    }
-    if (newValue !== '') {
-      setIsValue(true);
-    } else {
-      setIsValue(false);
-    }
-  }, [props]);
+        if (props.handleChange) {
+          props.handleChange(e);
+        }
+        if (newValue !== '') {
+          setIsValue(true);
+        } else {
+          setIsValue(false);
+        }
+      },
+      [props]
+    );
 
-  useEffect(() => { 
-    if (props.value === '') {
-      setInputValue('');
-    } else {
-      if (props.value) {
-        setInputValue(props.value);
+    useEffect(() => {
+      if (props.value === '') {
+        setInputValue('');
+      } else {
+        if (props.value) {
+          setInputValue(props.value);
+        }
       }
-    }
-  }, [props.value]);
+    }, [props.value]);
 
-  //скидуэмо значення Input коли користувач був обраний
-  useEffect(() => {
-    if (clearTextField) {
-      setInputValue('');
-      setIsValue(false);
-      const fakeEvent = {
-        target: {
-          value: '',
-        },
-      } as ChangeEvent<HTMLInputElement>;
+    //скидуэмо значення Input коли користувач був обраний
+    useEffect(() => {
+      if (clearTextField) {
+        setInputValue('');
+        setIsValue(false);
+        const fakeEvent = {
+          target: {
+            value: '',
+          },
+        } as ChangeEvent<HTMLInputElement>;
 
-      handleInputChange(fakeEvent);
-    } else {
-      return;
-    }
-  }, [clearTextField, handleInputChange]);
-  
-  const handleFocus = () => {
-    if (props.onFocus) {
-      props.onFocus();
-    }
-  };
+        handleInputChange(fakeEvent);
+      } else {
+        return;
+      }
+    }, [clearTextField, handleInputChange]);
 
-  const handleBlur = () => {
-    if (props.onBlur) {
-      props.onBlur();
-    }
-  };
+    const handleFocus = () => {
+      if (props.onFocus) {
+        props.onFocus();
+      }
+    };
 
-  return (
+    const handleBlur = () => {
+      if (props.onBlur) {
+        props.onBlur();
+      }
+    };
+
+    return (
       <label className={labelClass}>
         <input
           ref={ref}
@@ -97,22 +114,27 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>((props, ref) => 
           onBlur={handleBlur}
           required={props.required}
           title={props.title}
-      />
-      {(props.className === 'search' || props.className === 'searchIST') && !isValue &&
-        <span className={spanClass}>
-          <CiSearch size={24} style={{ marginRight: isTablet ? '5px' : '10px', marginLeft: '10px'}}/>
-          {props.placeholder}
-        </span>
-      }
-      {props.className !== 'search' && props.className !== 'searchIST' && !isValue &&
-        <span className={spanClass}>
-          {props.placeholder}
-        </span>
-      }
+        />
+        {(props.className === 'search' || props.className === 'searchIST') &&
+          !isValue && (
+            <span className={spanClass}>
+              <CiSearch
+                size={24}
+                style={{
+                  marginRight: isTablet ? '5px' : '10px',
+                  marginLeft: '10px',
+                }}
+              />
+              {props.placeholder}
+            </span>
+          )}
+        {props.className !== 'search' &&
+          props.className !== 'searchIST' &&
+          !isValue && <span className={spanClass}>{props.placeholder}</span>}
         {props.error && <p className={s.error}>{props.title}</p>}
       </label>
-  );
-});
+    );
+  }
+);
 
 export default TextField;
-

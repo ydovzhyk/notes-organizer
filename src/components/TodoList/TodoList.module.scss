@@ -1,18 +1,5 @@
 @use '../../styles/mixins';
 
-.todoList {
-  margin-top: 64px;
-  padding-bottom: 20px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(../../images/Auth/bg-register.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  @include mixins.mq(tablet) {
-    background-repeat: no-repeat;
-  }
-}
-
 .todosGroup {
   width: 100%;
   display: grid;

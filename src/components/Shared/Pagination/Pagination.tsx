@@ -9,7 +9,12 @@ interface IPaginationProps {
   type?: string;
 }
 
-const Pagination: React.FC<IPaginationProps>  = ({ totalPages, currentPage, onPageChange, type }) => {
+const Pagination: React.FC<IPaginationProps> = ({
+  totalPages,
+  currentPage,
+  onPageChange,
+  type,
+}) => {
   const getPageNumbers = () => {
     const pageNumbers = [];
     const displayRange = 2; // Кількість сторінок, які відображаються навколо поточної сторінки

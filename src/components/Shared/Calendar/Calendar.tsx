@@ -24,7 +24,7 @@ const Calendar: React.FC<ICalendarProps> = ({
   const maxDate = new Date();
   maxDate.setMonth(currentDate.getMonth() + 2);
 
-  const [selectedDate, setSelectedDate] = useState<Moment>( 
+  const [selectedDate, setSelectedDate] = useState<Moment>(
     moment(value, 'DD.MM.YYYY')
   );
 
@@ -37,7 +37,10 @@ const Calendar: React.FC<ICalendarProps> = ({
     handleChange(date.format('DD.MM.YYYY'));
   };
 
-  const CustomInput = forwardRef<HTMLButtonElement, { onClick?: React.MouseEventHandler }>(({ onClick }, ref) => {
+  const CustomInput = forwardRef<
+    HTMLButtonElement,
+    { onClick?: React.MouseEventHandler }
+  >(({ onClick }, ref) => {
     const [displayDate, setDisplayDate] = useState(
       moment(selectedDate).format('DD.MM.yyyy')
     );
@@ -77,6 +80,6 @@ const Calendar: React.FC<ICalendarProps> = ({
       />
     </>
   );
-}
+};
 
 export default Calendar;

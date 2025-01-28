@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ICalendarIconProps {
   width: string;
@@ -24,6 +24,6 @@ const CalendarIcon: React.FC<ICalendarIconProps> = ({ width, height }) => {
       />
     </svg>
   );
-}
+};
 
 export default CalendarIcon;

@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor, store } from './Redux/store'; 
+import { persistor, store } from './Redux/store';
 
 import './index.css';
 
@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 //UserRoutes.tsx
 //<Route path="" element={<HomePage />} />
 
-//package.json 
+//package.json
 //"predeploy": "npm run build",
 // "deploy": "gh-pages -d build",
 // "build": "react-scripts build && cp build/index.html build/404.html"

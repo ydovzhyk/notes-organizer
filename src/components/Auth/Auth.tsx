@@ -1,12 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
 const Auth: React.FC = () => {
-
-    return (
-        <>
-            <Outlet />
-        </>
-    );
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 export default Auth;

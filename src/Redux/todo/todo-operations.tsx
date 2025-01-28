@@ -9,7 +9,13 @@ import {
   axiosGetEditTodo,
 } from '../../api/todo';
 
-import { ICreateTodoResponse, ITodosWeekResponse, ITodosSearchResponse, ITodosSynchronizeResponse, ITodoIdResponse } from '../../components/types/todo/axios-todo';
+import {
+  ICreateTodoResponse,
+  ITodosWeekResponse,
+  ITodosSearchResponse,
+  ITodosSynchronizeResponse,
+  ITodoIdResponse,
+} from '../../components/types/todo/axios-todo';
 import { ITodoCreate, ITodoSearch } from '../../components/types/todo/todo';
 
 import { statusStopResetMessage } from './todo-slice';
@@ -18,12 +24,12 @@ export const createTodo = createAsyncThunk(
   'todo/create',
   async (userData: ITodoCreate, { rejectWithValue }) => {
     try {
-        const data: ICreateTodoResponse = await axiosCreateTodo(userData);
-        return data;
+      const data: ICreateTodoResponse = await axiosCreateTodo(userData);
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -32,12 +38,12 @@ export const editTodo = createAsyncThunk(
   'todo/edit',
   async (userData: ITodoCreate, { rejectWithValue }) => {
     try {
-        const data: ICreateTodoResponse = await axiosEditTodo(userData);
-        return data;
+      const data: ICreateTodoResponse = await axiosEditTodo(userData);
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -47,11 +53,11 @@ export const getTodosWeek = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data: ITodosWeekResponse = await axiosTodosWeek();
-        return data;
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -61,11 +67,11 @@ export const getSearchTodo = createAsyncThunk(
   async (userData: ITodoSearch, { rejectWithValue }) => {
     try {
       const data: ITodosSearchResponse = await axiosSearchTodo(userData);
-        return data;
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -74,13 +80,14 @@ export const synchronizeTodo = createAsyncThunk(
   'todo/synchronize',
   async (userData: ITodoCreate[], { rejectWithValue, dispatch }) => {
     try {
-      const data: ITodosSynchronizeResponse = await axiosSynchronizeTodo(userData);
+      const data: ITodosSynchronizeResponse =
+        await axiosSynchronizeTodo(userData);
       dispatch(statusStopResetMessage(false));
-        return data;
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );
@@ -90,11 +97,11 @@ export const getEditTodo = createAsyncThunk(
   async (userData: string, { rejectWithValue }) => {
     try {
       const data: ITodoIdResponse = await axiosGetEditTodo(userData);
-        return data;
+      return data;
     } catch (error: any) {
-        const { data, status } = error.response || {};
-        const customError = { data, status };
-        return rejectWithValue(customError);
+      const { data, status } = error.response || {};
+      const customError = { data, status };
+      return rejectWithValue(customError);
     }
   }
 );

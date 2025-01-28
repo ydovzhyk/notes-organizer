@@ -11,7 +11,8 @@ import {
 } from '../components/types/auth/axios-auth';
 
 // const REACT_APP_API_URL = 'http://localhost:4000';
-const REACT_APP_API_URL = 'https://notes-organizer-backend-904276e13746.herokuapp.com/';
+const REACT_APP_API_URL =
+  'https://notes-organizer-backend-904276e13746.herokuapp.com/';
 
 export const instance = axios.create({
   baseURL: REACT_APP_API_URL,
@@ -26,15 +27,15 @@ async function getAuthDataFromLocalStorage() {
 }
 
 instance.interceptors.request.use(
-  async (config) => {
+  async config => {
     const authData = await getAuthDataFromLocalStorage();
     if (authData && authData.accessToken && config.url !== '/auth/refresh') {
-      console.log(config.url)
+      console.log(config.url);
       config.headers['Authorization'] = `Bearer ${authData.accessToken}`;
     }
     return config;
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
   }
 );
@@ -108,7 +109,10 @@ instance.interceptors.response.use(
         refreshToken: null,
         sid: null,
       };
-      localStorage.setItem('notes-organizer.authData', JSON.stringify(authData));
+      localStorage.setItem(
+        'notes-organizer.authData',
+        JSON.stringify(authData)
+      );
       return Promise.reject(error);
     } else {
       return Promise.reject(error);
@@ -116,23 +120,38 @@ instance.interceptors.response.use(
   }
 );
 
-
-export const axiosRegister = async ( userData: IUserDataRegister ): Promise<IRegistrationResponse> => {
-  const { data }: { data: IRegistrationResponse } = await instance.post('/auth/register', userData);
+export const axiosRegister = async (
+  userData: IUserDataRegister
+): Promise<IRegistrationResponse> => {
+  const { data }: { data: IRegistrationResponse } = await instance.post(
+    '/auth/register',
+    userData
+  );
   return data;
 };
 
-export const axiosLogin = async (userData: IUserDataLogin ): Promise<ILoginResponse> => {
-  const { data }: { data: ILoginResponse } = await instance.post('/auth/login', userData);
+export const axiosLogin = async (
+  userData: IUserDataLogin
+): Promise<ILoginResponse> => {
+  const { data }: { data: ILoginResponse } = await instance.post(
+    '/auth/login',
+    userData
+  );
   return data;
 };
 
 export const axiosLogout = async (): Promise<ILogoutResponse> => {
-  const { data }: { data: ILogoutResponse } = await instance.post('/auth/logout');
+  const { data }: { data: ILogoutResponse } =
+    await instance.post('/auth/logout');
   return data;
 };
 
-export const axiosGetCurrentUser = async ( userData: IAuth ): Promise<ILoginResponse> => {
-  const { data }: { data: ILoginResponse } = await instance.post('/auth/current', userData);
+export const axiosGetCurrentUser = async (
+  userData: IAuth
+): Promise<ILoginResponse> => {
+  const { data }: { data: ILoginResponse } = await instance.post(
+    '/auth/current',
+    userData
+  );
   return data;
 };

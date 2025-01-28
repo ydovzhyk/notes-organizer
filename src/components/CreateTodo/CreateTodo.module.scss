@@ -1,23 +1,6 @@
 @use '../../styles/mixins';
 
-.createTodo {
-  margin-top: 64px;
-  display: flex;
-  flex-direction: column;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(../../images/Auth/bg-register.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  justify-content: space-around;
-  @include mixins.mq(tablet) {
-    background-repeat: no-repeat;
-  }
-}
-
 .todoPart {
-  margin-top: auto;
-  margin-bottom: auto;
   display: flex;
   flex-direction: row;
 }
@@ -167,9 +150,13 @@
   }
 }
 
-.create {
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   @include mixins.mq(tablet) {
+    align-items: flex-start;
     width: 39%;
   }
   @include mixins.mq(desktop) {
@@ -232,7 +219,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: 350px;
+  @include mixins.mq(tablet) {
+    width: 100%;
+  }
 }
 
 .btnReturn {

@@ -5,15 +5,18 @@ import Loader from '../Loader/Loader';
 import PublicRoute from './PublicRoutes';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const TodoListPage = lazy(() => import('../../pages/TodoListPage/TodoListPage'));
-const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
+const TodoListPage = lazy(
+  () => import('../../pages/TodoListPage/TodoListPage')
+);
+const NotFoundPage = lazy(
+  () => import('../../pages/NotFoundPage/NotFoundPage')
+);
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
 const Login = lazy(() => import('../../components/Auth/Login/Login')); // Імпортуйте компонент Login
-const Register = lazy(() => import('../../components/Auth/Register/Register')); 
+const Register = lazy(() => import('../../components/Auth/Register/Register'));
 const EditPage = lazy(() => import('../../pages/EditPage/EditPage'));
 
 const UserRoutes: React.FC = () => {
-
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
@@ -25,7 +28,7 @@ const UserRoutes: React.FC = () => {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Route>
-          </Route>
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
