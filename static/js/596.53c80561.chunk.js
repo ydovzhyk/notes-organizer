@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunknotes_organizer=self.webpackChunknotes_organizer||[]).push([[596],{7596:(e,s,n)=>{n.r(s),n.d(s,{default:()=>c});var r=n(3216),a=n(579);const t=()=>(0,a.jsx)(a.Fragment,{children:(0,a.jsx)(r.sv,{})}),c=()=>(0,a.jsx)(a.Fragment,{children:(0,a.jsx)(t,{})})}}]);
+//# sourceMappingURL=596.53c80561.chunk.js.map
