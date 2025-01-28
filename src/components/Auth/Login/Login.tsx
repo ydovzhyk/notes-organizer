@@ -4,7 +4,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { login } from '../../../Redux/auth/auth-operations';
 import { NavLink, Navigate, Link, useLocation } from 'react-router-dom';
 import { getLogin } from './../../../Redux/auth/auth-selectors';
+
 import { IUserDataLogin } from '../../types/auth/auth';
+
 import { fields } from '../../Shared/TextField/fields';
 import TextField from '../../Shared/TextField/TextField';
 import Text from '../../Shared/Text';
@@ -66,7 +68,10 @@ const Login: React.FC = () => {
             </NavLink>
           </div>
           <Text textClass="google-text" text={googleText} />
-          <a href={`${REACT_APP_API_URL}/google?origin=${currentOrigin}`}>
+          <a
+            href={`${REACT_APP_API_URL}/google?origin=${currentOrigin}`}
+            className={s.googleBtn}
+          >
             <FcGoogle size={24} />
             Google
           </a>
