@@ -4,9 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { login } from '../../../Redux/auth/auth-operations';
 import { NavLink, Navigate, Link, useLocation } from 'react-router-dom';
 import { getLogin } from './../../../Redux/auth/auth-selectors';
-
 import { IUserDataLogin } from '../../types/auth/auth';
-
 import { fields } from '../../Shared/TextField/fields';
 import TextField from '../../Shared/TextField/TextField';
 import Text from '../../Shared/Text';
@@ -23,7 +21,8 @@ const Login: React.FC = () => {
   const location = useLocation();
 
   const currentOrigin = encodeURIComponent(window.location.origin);
-  const REACT_APP_API_URL = 'https://notes-organizer-backend-904276e13746.herokuapp.com';
+  const REACT_APP_API_URL =
+    'https://notes-organizer-backend-904276e13746.herokuapp.com';
 
   const googleText =
     location.pathname === '/auth/login'

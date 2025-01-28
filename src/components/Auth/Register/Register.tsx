@@ -28,7 +28,8 @@ const Register: React.FC = () => {
   const [userAvatar, setUserAvatar] = useState<string | null>(null);
 
   const currentOrigin = encodeURIComponent(window.location.origin);
-  const REACT_APP_API_URL = 'https://notes-organizer-backend-904276e13746.herokuapp.com';
+  const REACT_APP_API_URL =
+    'https://notes-organizer-backend-904276e13746.herokuapp.com';
 
   const googleText =
     location.pathname === '/auth/login'
